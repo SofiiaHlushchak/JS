@@ -1,0 +1,75 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <h1>Registration GET</h1>
+    <form>
+   
+     <label for="fname">First name:</label>
+     <input type="text" id="fname" name="fname"><br><br>
+ 
+     <label for="lname">Last name:</label>
+     <input type="text" id="lname" name="lname"><br><br>
+    
+     <label for="lname">Your age :</label>
+     <input type="number" id="age" name="age"><br><br>
+ 
+      <label for="lname">Place of residence:</label>
+      <input type="text" id="home" name="home"><br><br>
+    
+      <input type="submit" value="Submit" onclick="sendDataByGetMethod()">
+    </form>
+      <h1>Registration POST</h1>
+     <form method="post">
+   
+     <label for="fname">First name:</label>
+     <input type="text" id="fName" name="fname"><br><br>
+ 
+     <label for="lname">Last name:</label>
+     <input type="text" id="lName" name="lname"><br><br>
+    
+     <label for="lname">Your age :</label>
+     <input type="number" id="Age" name="age"><br><br>
+ 
+      <label for="lname">Place of residence:</label>
+      <input type="text" id="Home" name="home"><br><br>
+    
+      <input type="submit" value="Submit" onclick="sendDataByPostMethod()">
+    </form>
+    
+    <script>
+       
+    function sendDataByGetMethod() {
+	let userData = {
+			lName:document.getElementById('fname').value,
+			fName:document.getElementById('lname').value,	
+		    age:document.getElementById('age').value,
+		    address:document.getElementById('home').value
+	};
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", "/formGet?lname="+userData.lName+"&fname="+userData.fName+"&age="+userData.age+"&address="+userData.address);
+	xhr.setRequestHeader("Content-type","application/json");
+	xhr.send();
+}
+
+function sendDataByPostMethod() {
+	let userData1 = {
+			lName:document.getElementById('fName').value,
+			fName:document.getElementById('lName').value,	
+		    age:document.getElementById('Age').value,
+		    address:document.getElementById('Home').value
+	};
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "/formPost");
+	xhr.setRequestHeader("Content-type","application/json");
+	xhr.send(JSON.stringify(userData1));
+}
+    </script>
+    <script src="form.js"></script>
+</body>
+</html>
